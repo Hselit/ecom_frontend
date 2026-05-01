@@ -1,18 +1,18 @@
-import { useState } from 'react'
 import { useEffect } from "react";
-import { Route,Routes } from 'react-router-dom'
+import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import './App.css'
-import Navbar from './components/Navbar'
-import PrivateRoute from './components/PrivateRoute'
-import Login from './pages/login'
-import Register from './pages/Register'
-import Product from './pages/Product'
-import { login } from "./slices/userSlice"; // ✅ import login action
-import Profile from './pages/Profile';
+import "./App.css";
+import Navbar from "./components/Navbar/Navbar";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import Product from "./pages/Product/Product";
+import { login } from "./slices/userSlice";
+import Profile from "./pages/Profile/Profile";
+import ManageProducts from "./pages/ManageProduct/ManageProduct";
+import Cart from "./pages/Cart/Cart";
 
 function App() {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function App() {
       dispatch(
         login({
           user: JSON.parse(storedUser),
-          token
+          token,
         })
       );
     }
@@ -33,17 +33,19 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path='/' element={<h1>Home</h1>} />
+        <Route path="/" element={<h1>Home</h1>} />
         <Route element={<PrivateRoute />}>
-          <Route path='/products' element={<Product/>} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/cart' element={<h1>Cart</h1>} />
+          <Route path="/products" element={<Product />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/manage-products" element={<ManageProducts />} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

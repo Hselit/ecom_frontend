@@ -1,0 +1,13 @@
+.cart-page h1 {
+  text-align: left;
+}
+
+.cart-thumb {
+  object-fit: cover;
+}
+
+.cart-meta-pre {
+  max-height: 160px;
+  overflow: auto;
+  white-space: pre-wrap;
+}

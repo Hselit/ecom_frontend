@@ -1,10 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import "./login.css";
-import axios from "axios";
-import baseurl from "../api/url";
-import { login } from "../slices/userSlice"; // ✅ import action
+import "./Login.css";
+import { login as loginUser } from "../../api/services/authApi";
+import { login } from "../../slices/userSlice";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,39 +11,32 @@ const Login = () => {
 
   const [user, setUser] = React.useState({
     identifier: "",
-    password: ""
+    password: "",
   });
 
-  // handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({
       ...user,
-      [name]: value
+      [name]: value,
     });
   };
 
-  // handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${baseurl}/login`, user);
-
-      console.log("Login response:", res.data);
-
-      const apiData = res.data.data;
+      const res = await loginUser(user);
+      const apiData = res.data?.data;
 
       if (apiData?.user && apiData?.token) {
-        // save in localStorage
         localStorage.setItem("token", apiData.token);
         localStorage.setItem("user", JSON.stringify(apiData.user));
 
-        // ✅ correct Redux dispatch
         dispatch(
           login({
             user: apiData.user,
-            token: apiData.token
+            token: apiData.token,
           })
         );
 
@@ -82,9 +74,7 @@ const Login = () => {
 
         <button type="submit">Login</button>
 
-        <Link to="/register">
-          Don't have an account? Register
-        </Link>
+        <Link to="/register">Don&apos;t have an account? Register</Link>
       </form>
     </div>
   );

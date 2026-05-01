@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+.container{
+  margin: 10%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
 nav {
   margin-top: 5px;
   display: flex;
