@@ -4,6 +4,30 @@ React (Vite) storefront UI that talks to a REST API: products, auth, profile, an
 
 **Backend for this project:** [github.com/Hselit/ecom_backend](https://github.com/Hselit/ecom_backend) — Express API (JWT auth, cart, products, and related routes). Run it locally (see that repo’s readme) so this app can reach it at the `BASE_URL` below.
 
+## Screenshots
+
+Static captures live under [`images/`](images/).
+
+### Login
+
+![Login page](images/Ecom-Login-page.png)
+
+### Register
+
+![Register page](images/Ecom-Register-page.png)
+
+### Products
+
+![Products page](images/Ecom-Product-page.png)
+
+### Profile
+
+![Profile page](images/Ecom-Profile-page.png)
+
+### Cart
+
+![Cart page](images/Ecom-Cart-page.png)
+
 ## Tech stack
 
 - **React 19** + **Vite 8**
